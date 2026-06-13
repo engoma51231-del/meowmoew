@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Arman 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+overflow:hidden;
+height:100vh;
+background:linear-gradient(135deg,#ffd6e8,#ffe7f3,#fff3f8);
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+.screen{
+position:absolute;
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+transition:all .9s ease;
+}
+
+.hidden{
+opacity:0;
+pointer-events:none;
+transform:scale(.85);
+}
+
+.card{
+width:90%;
+max-width:720px;
+background:rgba(255,255,255,.93);
+backdrop-filter:blur(8px);
+padding:40px;
+border-radius:35px;
+text-align:center;
+box-shadow:0 15px 50px rgba(255,105,180,.18);
+z-index:5;
+}
+
+.title{
+font-family:'Pacifico',cursive;
+font-size:3rem;
+color:#ff5fa2;
+margin-bottom:10px;
+}
+
+.love-title{
+font-family:'Pacifico',cursive;
+font-size:1.7rem;
+color:#ff8ab8;
+margin-bottom:15px;
+}
+
+.subtitle{
+color:#ff8ab8;
+font-size:1.05rem;
+margin-bottom:25px;
+}
+
+.button{
+background:#ff79b6;
+color:white;
+border:none;
+padding:18px 35px;
+border-radius:999px;
+font-size:1.1rem;
+cursor:pointer;
+transition:.3s;
+box-shadow:0 8px 25px rgba(255,105,180,.25);
+}
+
+.button:hover{
+transform:scale(1.05);
+}
+
+.reason-box{
+background:#fff6fb;
+padding:30px;
+border-radius:25px;
+font-size:1.4rem;
+line-height:1.8;
+color:#555;
+min-height:160px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.tracker{
+margin-top:12px;
+color:#ff6fae;
+font-family:'Pacifico',cursive;
+font-size:1.1rem;
+}
+
+.signature{
+margin-top:20px;
+font-family:'Pacifico',cursive;
+color:#ff87b7;
+font-size:1.2rem;
+}
+
+.tomorrow{
+margin-top:15px;
+font-family:'Pacifico',cursive;
+color:#ff69b4;
+font-size:1.1rem;
+}
+
+/* hearts */
+.heart{
+position:absolute;
+bottom:-60px;
+animation:float linear infinite;
+pointer-events:none;
+opacity:.8;
+}
+
+@keyframes float{
+from{transform:translateY(0);}
+to{transform:translateY(-120vh);}
+}
+
+/* sparkle */
+.sparkle{
+position:absolute;
+font-size:50px;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+animation:burst 1s forwards;
+}
+
+@keyframes burst{
+0%{opacity:0;transform:translate(-50%,-50%) scale(.2);}
+50%{opacity:1;transform:translate(-50%,-50%) scale(1.5);}
+100%{opacity:0;transform:translate(-50%,-50%) scale(3);}
+}
+
+/* secret + password */
+.secretBox{
+margin-top:15px;
+display:none;
+background:#fff0f6;
+padding:20px;
+border-radius:20px;
+color:#555;
+line-height:1.6;
+}
+
+input{
+margin-top:10px;
+padding:10px;
+border-radius:10px;
+border:1px solid #ff9ccf;
+width:70%;
+}
+
+.smallBtn{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:#ff7bb8;
+color:white;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+<source src="your-music.mp3" type="audio/mp3">
+</audio>
+
+<!-- HOME -->
+<div class="screen" id="home">
+
+<div class="card">
+
+<h1 class="title">For Arman 💖</h1>
+
+<h2 class="love-title">Reasons Why I Love You ♡</h2>
+
+<p class="subtitle">
+A tiny reminder that you're loved every single day.
+</p>
+
+<button class="button" id="btn">
+✨ See My Love Fortune ✨
+</button>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+<div class="screen hidden" id="main">
+
+<div class="card">
+
+<h1 class="title">💌 Dear Arman</h1>
+
+<div class="reason-box">
+<span id="reason"></span>
+</div>
+
+<div class="tracker">
+💞 Together for <span id="daysTogether"></span> days
+</div>
+
+<div class="tracker">
+🎂 Days until our anniversary: <span id="countdown"></span>
+</div>
+
+<div class="signature">Love, Lana 💕</div>
+
+<div class="tomorrow">Come back tomorrow for a new reason 💖</div>
+
+<!-- SECRET DEC 1 LETTER -->
+<div class="secretBox" id="decLetter">
+<h3>💌 December Letter</h3>
+<p>
+Happy anniversary, Arman.<br><br>
+A year and 6 months later, and I’d still choose you in every lifetime.<br><br>
+You are my favorite constant in a world that keeps changing.<br><br>
+Love always, Lana 💖
+</p>
+</div>
+
+<!-- PASSWORD SECRET -->
+<div class="secretBox" id="passwordBox">
+
+<h3>🔐 Unlock a secret message</h3>
+
+<input type="text" id="passInput" placeholder="Enter password">
+<br>
+<button class="smallBtn" onclick="checkPassword()">Unlock</button>
+
+<p id="hiddenMsg" style="display:none;margin-top:15px;">
+Because “always and forever” was never just words to me—it was you.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const reasons = [
+"Because your smile fixes my worst days.",
+"Because your hugs feel like home.",
+"Because you make life softer.",
+"Because you’re my favorite person.",
+"Because you always make me laugh.",
+"Because I feel safe with you.",
+"Because you understand me.",
+"Because you’re my happiness.",
+"Because every moment with you matters.",
+"Because you are my home."
+];
+
+function getReason(){
+const today=new Date();
+const seed=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate();
+return reasons[seed % reasons.length];
+}
+
+function type(text){
+const el=document.getElementById("reason");
+el.innerHTML="";
+let i=0;
+let t=setInterval(()=>{
+el.innerHTML+=text[i];
+i++;
+if(i>=text.length) clearInterval(t);
+},30);
+}
+
+/* BUTTON */
+document.getElementById("btn").addEventListener("click",()=>{
+
+document.getElementById("bgMusic").play();
+
+document.getElementById("home").classList.add("hidden");
+document.getElementById("main").classList.remove("hidden");
+
+type(getReason());
+
+});
+
+/* HEARTS */
+for(let i=0;i<120;i++){
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML=["💖","💕","💗","💓","💞","🌸","✨"][Math.floor(Math.random()*7)];
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(12+Math.random()*30)+"px";
+h.style.animationDuration=(6+Math.random()*10)+"s";
+document.body.appendChild(h);
+}
+
+/* DAYS TOGETHER */
+const startDate=new Date("2025-06-01"); // 1 year 6 months ago approx
+const now=new Date();
+document.getElementById("daysTogether").innerText=
+Math.floor((now-startDate)/(1000*60*60*24));
+
+/* ANNIVERSARY COUNTDOWN */
+const anniv=new Date("2026-12-01");
+document.getElementById("countdown").innerText=
+Math.ceil((anniv-now)/(1000*60*60*24));
+
+/* DEC 1 LETTER */
+if(now.getMonth()===11 && now.getDate()===1){
+document.getElementById("decLetter").style.display="block";
+}
+
+/* PASSWORD */
+function checkPassword(){
+let val=document.getElementById("passInput").value.toLowerCase();
+
+if(val==="always and forever"){
+document.getElementById("hiddenMsg").style.display="block";
+}
+}
+
+</script>
+
+</body>
+</html>
